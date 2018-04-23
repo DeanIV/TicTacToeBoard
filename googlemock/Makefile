@@ -89,28 +89,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -133,16 +111,38 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/De/TicTacToeBoard/CMakeFiles /home/De/TicTacToeBoard/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/De/TicTacToeBoard && $(CMAKE_COMMAND) -E cmake_progress_start /home/De/TicTacToeBoard/CMakeFiles /home/De/TicTacToeBoard/googlemock/CMakeFiles/progress.marks
+	cd /home/De/TicTacToeBoard && $(MAKE) -f CMakeFiles/Makefile2 googlemock/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/De/TicTacToeBoard/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/De/TicTacToeBoard && $(MAKE) -f CMakeFiles/Makefile2 googlemock/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,70 +152,102 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/De/TicTacToeBoard && $(MAKE) -f CMakeFiles/Makefile2 googlemock/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/De/TicTacToeBoard && $(MAKE) -f CMakeFiles/Makefile2 googlemock/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/De/TicTacToeBoard && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named gmock
+# Convenience name for target.
+googlemock/CMakeFiles/gmock.dir/rule:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f CMakeFiles/Makefile2 googlemock/CMakeFiles/gmock.dir/rule
+.PHONY : googlemock/CMakeFiles/gmock.dir/rule
 
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gmock
+# Convenience name for target.
+gmock: googlemock/CMakeFiles/gmock.dir/rule
+
 .PHONY : gmock
 
 # fast build rule for target.
 gmock/fast:
-	$(MAKE) -f googlemock/CMakeFiles/gmock.dir/build.make googlemock/CMakeFiles/gmock.dir/build
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock.dir/build.make googlemock/CMakeFiles/gmock.dir/build
 .PHONY : gmock/fast
 
-#=============================================================================
-# Target rules for targets named gmock_main
+# Convenience name for target.
+googlemock/CMakeFiles/gmock_main.dir/rule:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f CMakeFiles/Makefile2 googlemock/CMakeFiles/gmock_main.dir/rule
+.PHONY : googlemock/CMakeFiles/gmock_main.dir/rule
 
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gmock_main
+# Convenience name for target.
+gmock_main: googlemock/CMakeFiles/gmock_main.dir/rule
+
 .PHONY : gmock_main
 
 # fast build rule for target.
 gmock_main/fast:
-	$(MAKE) -f googlemock/CMakeFiles/gmock_main.dir/build.make googlemock/CMakeFiles/gmock_main.dir/build
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock_main.dir/build.make googlemock/CMakeFiles/gmock_main.dir/build
 .PHONY : gmock_main/fast
 
-#=============================================================================
-# Target rules for targets named gtest
+src/gmock-all.o: src/gmock-all.cc.o
 
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
+.PHONY : src/gmock-all.o
 
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) -f googlemock/gtest/CMakeFiles/gtest.dir/build.make googlemock/gtest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
+# target to build an object file
+src/gmock-all.cc.o:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock.dir/build.make googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+.PHONY : src/gmock-all.cc.o
 
-#=============================================================================
-# Target rules for targets named gtest_main
+src/gmock-all.i: src/gmock-all.cc.i
 
-# Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
+.PHONY : src/gmock-all.i
 
-# fast build rule for target.
-gtest_main/fast:
-	$(MAKE) -f googlemock/gtest/CMakeFiles/gtest_main.dir/build.make googlemock/gtest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
+# target to preprocess a source file
+src/gmock-all.cc.i:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock.dir/build.make googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.i
+.PHONY : src/gmock-all.cc.i
+
+src/gmock-all.s: src/gmock-all.cc.s
+
+.PHONY : src/gmock-all.s
+
+# target to generate assembly for a file
+src/gmock-all.cc.s:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock.dir/build.make googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.s
+.PHONY : src/gmock-all.cc.s
+
+src/gmock_main.o: src/gmock_main.cc.o
+
+.PHONY : src/gmock_main.o
+
+# target to build an object file
+src/gmock_main.cc.o:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock_main.dir/build.make googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+.PHONY : src/gmock_main.cc.o
+
+src/gmock_main.i: src/gmock_main.cc.i
+
+.PHONY : src/gmock_main.i
+
+# target to preprocess a source file
+src/gmock_main.cc.i:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock_main.dir/build.make googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.i
+.PHONY : src/gmock_main.cc.i
+
+src/gmock_main.s: src/gmock_main.cc.s
+
+.PHONY : src/gmock_main.s
+
+# target to generate assembly for a file
+src/gmock_main.cc.s:
+	cd /home/De/TicTacToeBoard && $(MAKE) -f googlemock/CMakeFiles/gmock_main.dir/build.make googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.s
+.PHONY : src/gmock_main.cc.s
 
 # Help Target
 help:
@@ -226,14 +258,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
-	@echo "... install/strip"
-	@echo "... install/local"
 	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... gmock"
 	@echo "... gmock_main"
-	@echo "... gtest"
-	@echo "... gtest_main"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... src/gmock-all.o"
+	@echo "... src/gmock-all.i"
+	@echo "... src/gmock-all.s"
+	@echo "... src/gmock_main.o"
+	@echo "... src/gmock_main.i"
+	@echo "... src/gmock_main.s"
 .PHONY : help
 
 
@@ -245,6 +281,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/De/TicTacToeBoard && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
